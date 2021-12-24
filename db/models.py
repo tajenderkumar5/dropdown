@@ -16,7 +16,6 @@ class States(models.Model):
         return self.name
 
 class District(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     states = models.ForeignKey(States, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
 
@@ -24,8 +23,6 @@ class District(models.Model):
         return self.name       
 
 class City(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    states = models.ForeignKey(States, on_delete=models.CASCADE)
     District=models.ForeignKey(District,on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
 

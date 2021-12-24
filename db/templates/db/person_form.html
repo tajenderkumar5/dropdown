@@ -5,8 +5,6 @@
   <h2>Person Form</h2>
 
   <form method="post" id="personForm" data-states-url="{% url 'ajax_load_states' %}" novalidate>
-  <form method="post" id="personForm" data-district-url="{% url 'ajax_load_district' %}" novalidate>
-    <form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
     {% csrf_token %}
     <table>
       {{ form.as_table }}
@@ -14,8 +12,7 @@
     <button type="submit">Save</button>
     <a href="{% url 'person_changelist' %}">Nevermind</a>
   </form>
-  </form>
-  </form>
+ 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
@@ -24,7 +21,7 @@
       var countryId = $(this).val();
 
       $.ajax({
-        url: url,
+        url: '{% url 'ajax_load_states' %}',
         data: {
           'country': countryId
         },
@@ -38,10 +35,10 @@
   <script>
     $("#id_states").change(function () {
       var url = $("#personForm").attr("data-district-url");
-      var countryId = $(this).val();
+      var statesId = $(this).val();
 
       $.ajax({
-        url: url,
+        url: '{% url  'ajax_load_district' %}',
         data: {
           'states': statesId
         },
@@ -54,17 +51,17 @@
   </script>
 
    <script>
-    $("#id_states").change(function () {
-      var url = $("#personForm").attr("data-cities-url");
-      var countryId = $(this).val();
+    $("#id_district").change(function () {
+      var url = $("#personForm").attr("data-city-url");
+      var districtId = $(this).val();
 
       $.ajax({
-        url: url,
+        url: '{% url 'ajax_load_cities' %}',
         data: {
-          'states': statesId
+          'district': districtId
         },
         success: function (data) {
-          $("#id_cities").html(data);
+          $("#id_city").html(data);
         }
       });
 

@@ -34,6 +34,6 @@ def load_district(request):
     return render(request, 'db/district_dropdown_list.html', {'district': district})
 
 def load_cities(request):
-    states_id = request.GET.get('states')
-    cities = City.objects.filter(states_id=states_id).order_by('name')
+    district_id = request.GET.get('district')
+    cities = City.objects.filter(district_id=district_id).order_by('name')
     return render(request, 'db/city_dropdown_list_options.html', {'cities': cities})    
