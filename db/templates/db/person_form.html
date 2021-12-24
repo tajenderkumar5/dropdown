@@ -7,10 +7,12 @@
   <form method="post" id="personForm" data-states-url="{% url 'ajax_load_states' %}" novalidate>
     {% csrf_token %}
     <table>
+      <div class="mb-3" >
       {{ form.as_table }}
+      </div>
     </table>
-    <button type="submit">Save</button>
-    <a href="{% url 'person_changelist' %}">Nevermind</a>
+    <button type="submit"  class="btn btn-success">Save</button>
+    <a href="{% url 'person_changelist' %}"><button type="button" class="btn btn-primary">GO TO TABLE</button></a>
   </form>
  
 

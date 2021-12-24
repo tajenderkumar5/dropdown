@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Human Resources Module{% endblock %}
+{% block title %}DATACOLLECT{% endblock %}
 
 {% block content %}
-  <h2>Human Resources Module » People Management</h2>
+  <h2>My DATA TABLE</h2>
 
   <p>
-    <a href="{% url 'person_add' %}">Add person</a>
+    <a href="{% url 'person_add' %}"><button type="button" class="btn btn-primary">Add person</button></a>
   </p>
 
-  <table border="1">
+  <table class="table" border="1">
     <thead>
       <tr>
         <th>Name</th>
@@ -35,7 +35,7 @@
         </tr>
       {% empty %}
         <tr>
-          <td colspan="4">No person in the database. <a href="{% url 'person_add' %}">Add the first person</a>.</td>
+          <td colspan="4">No person in the database. <a href="{% url 'person_add' %}"><button type="button" class="btn btn-primary">Add the first person</button></a>.</td>
         </tr>
       {% endfor %}
     </tbody>

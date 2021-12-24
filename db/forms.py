@@ -31,13 +31,13 @@ class PersonForm(forms.ModelForm):
             self.fields['district'].queryset = self.instance.states.district_set.order_by('name')     
         
         
-        self.fields['city'].queryset = States.objects.none()
-        if 'district' in self.data:
-            try:
-                city_id = int(self.data.get('city'))
-                self.fields['city'].queryset = City.objects.filter(city_id=city_id).order_by('name')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
-        elif self.instance.pk:
-            self.fields['city'].queryset = self.instance.district.city_set.order_by('name') 
+        # self.fields['city'].queryset = States.objects.none()
+        # if 'district' in self.data:
+        #     try:
+        #         city_id = int(self.data.get('city'))
+        #         self.fields['city'].queryset = City.objects.filter(city_id=city_id).order_by('name')
+        #     except (ValueError, TypeError):
+        #         pass  # invalid input from the client; ignore and fallback to empty City queryset
+        # elif self.instance.pk:
+        #     self.fields['city'].queryset = self.instance.district.city_set.order_by('name') 
      
